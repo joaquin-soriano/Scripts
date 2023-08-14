@@ -14,7 +14,7 @@ function SendMail ($SMTPserver,$sendermailaddress,$mailBody,$asuntoFinal)
     $msg = new-object Net.Mail.MailMessage            
     $smtp = new-object Net.Mail.SmtpClient($smtpServer)            
     $msg.From = $sendermailaddress            
-    $msg.To.Add("joaquin.soriano@mirgor.com.ar")   
+    $msg.To.Add("Secops@mirgor.com.ar")   
     $msg.Subject = $asuntoFinal           
     $msg.Body = $mailBody            
     $smtp.Send($msg)            
