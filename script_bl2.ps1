@@ -24,7 +24,13 @@ if($testConn){
                 }
             }
 
-            $volumenAct = Get-BitLockerVolume -MountPoint $disco.MountPoint | Select-Object *¨
+            if($disco.VolumeType -eq 'Data')
+            {
+                $pathRK = $env:HOMEDRIVE + "\ScriptBitLocker"
+                manage-bde -protectors -add $disco.MountPoint -rk $pathRK
+            }
+
+            $volumenAct = Get-BitLockerVolume -MountPoint $disco.MountPoint | Select-Object *
             $indice = 0
             $protectores = $volumenAct.KeyProtector
             while($protectores[$indice].KeyProtectorType -cnotlike "RecoveryPassword")
